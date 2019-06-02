@@ -19,14 +19,14 @@ router.get('/shila',orderdb.findspecificName);
 router.get('/:id', orderdb.order_details);
 
 
-
-
-
-router.put('/:id/update', orderdb.order_record_update);
+router.put('/:id/update', orderdb.UpdateOrderStatus);
 
 router.delete('/:id/delete', orderdb.order_record_delete);
 
 router.get('/all/patients', orderdb.selectAll);
+
+
+router.get('/find/:id', orderdb.findPatientOrders);
 
 
 

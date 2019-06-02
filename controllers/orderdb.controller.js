@@ -13,15 +13,21 @@ exports.DbMedical = function (req, res) {
 exports.order_record_create = function (req, res) {
     let order = new medicalDB.Order(
         {
-             nurseOrderText: req.body.nurseOrderText,
+              idNum: req.body.idNum,
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              entryDate: req.body.entryDate,
+              date: req.body.date,
+              dayOfPeriod:req.body.dayOfPeriod,
+              doctor:req.body.doctor,
+              entryUser:req.body.entryUser,
+              nurseOrderText: req.body.nurseOrderText,
               patientDetails: req.body.patientDetails,
               isDone:         req.body.isDone,
               isUnderStood: req.body.isUnderStood,
               Comment: req.body.Comment
-              });
-
-      
-
+              }); 
+    //order.collection.deleteMany(); empty collection
     order.save(function (err) {
         if (err) {
             console.log(err);
@@ -41,10 +47,6 @@ exports.drug_record_create = function (req, res) {
           
         }
     );
-
-
-
-
     drug.save(function (err)  {
         if (err) {
             return next(err);
@@ -69,6 +71,43 @@ exports.order_details = function (req, res,next) {
 
 
 
+
+
+
+exports.UpdateOrderStatus = function (req, res) {
+    medicalDB.Order.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, order) {
+        if (err) return next(err);
+
+        //the server supose to sends a JSON object
+       // res.send('order Record udpated.');
+    });
+};
+
+/*  exports.findPatientOrders = function (req, res,next) {
+    
+    medicalDB.Order.find({idNum:req.params.id}, function (err, order) {
+        if (err) return next(err);
+        res.send(order);
+    });
+}; */
+
+
+ /*  exports.findPatientOrders = function (req, res,next) {
+    
+    medicalDB.Order.find({idNum:req.params.id}).where('doctor').equals('איתן אורן').then((orders)=>
+    res.send(orders));
+    }; */
+
+
+    exports.findPatientOrders = function (req, res,next) {
+        medicalDB.Order.find({idNum:req.params.id}).where('isDone').equals(false).
+        
+        then((orders)=>
+        res.send(orders));
+        };
+
+
+
  exports.selectAll = function(req, res) {
     medicalDB.Order.find({}, function(err, orders) {
      /*  var orderMap = {};
@@ -88,7 +127,7 @@ exports.findspecificName = function(req, res) {
         res.send(order); 
     }); */
 
-    medicalDB.Order.findOne({nurseOrderText:"test nurseOrderText"}).then((col)=> {
+    medicalDB.Order.findOne({entryUser:"יעל גבע"}).then((col)=> {
      res.send(col.nurseOrderText);
 
 }).then((json)=>console.log("json.Comment"));
@@ -121,22 +160,6 @@ exports.findspecificName = function(req, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-exports.order_record_update = function (req, res) {
-    medicalDB.Order.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, order) {
-        if (err) return next(err);
-        res.send('order Record udpated.');
-    });
-};
 
 
 exports.order_record_delete = function (req, res) {

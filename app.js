@@ -5,10 +5,20 @@ const order = require('./routes/order.route'); // Imports routes for the product
 const app = express();
 const cors = require('cors');
 app.use(cors());
+
+app.options('*', cors()) 
+
 /* const corsOptions = {
     origin: 'http://localhost:4200',
     optionsSuccessStatus: 200
   } */
+
+/* const corsOptions = {
+    origin: 'http://localhost:4200',
+    optionsSuccessStatus: 200
+  }  */
+
+
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
@@ -31,6 +41,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/order', order);
 
 let port = process.env.PORT || 1234;
+
 
 
 app.listen(port, () => {

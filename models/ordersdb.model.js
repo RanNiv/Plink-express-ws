@@ -33,7 +33,7 @@ role:Role;
 */
 
 
-let OrderSchema =new Schema ({
+/* let OrderSchema =new Schema ({
  
 patientDetails :{
 idNum:String,
@@ -45,7 +45,25 @@ nurseOrderText: {type: String},
 isDone: {type: Boolean, required: true},
 isUnderStood: {type: Boolean},
 Comment: {type: String}
-});
+}); */
+
+let OrderSchema =new Schema ({
+  idNum:String,
+  firstName:String,
+  lastName:String,
+  nurseOrderText: {type: String},
+  isDone: {type: Boolean, required: true},
+  isUnderStood: {type: Boolean},
+  Comment: {type: String},
+  entryDate: {type:Date},
+  date: {type:String},
+  dayOfPeriod:{type:String},
+  doctor:{type:String},
+  entryUser:{type:String}
+  });
+
+
+
 
 let DrugSchema =new Schema ({
   id:  {type: String, required: true, max: 15},
