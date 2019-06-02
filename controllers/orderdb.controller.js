@@ -33,7 +33,7 @@ exports.order_record_create = function (req, res) {
             console.log(err);
             return next(err);
         }
-        res.send('medical Record Created successfully')
+        res.send(order._id)
     })
 };
 
