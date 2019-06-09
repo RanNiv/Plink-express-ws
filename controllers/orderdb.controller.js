@@ -164,7 +164,14 @@ exports.findspecificName = function(req, res) {
 
 exports.order_record_delete = function (req, res) {
     medicalDB.Order.findByIdAndRemove(req.params.id, function (err) {
-        if (err) return next(err);
-        res.send('order Record Deleted successfully!');
+       /*  if (err) return next(err);
+        res.send('order Record Deleted successfully!'); */
+        if (err)
+        res.status(500).send({ error: "the order was not deleted" });
+        else res.send ({
+        orderStatus:"deleted"
+
+        })
+
     })
 };
