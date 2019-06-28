@@ -55,7 +55,7 @@ let OrderSchema =new Schema ({
   firstOrderDate:{type: String},
   orderDays:{type: Number},
   isUnderstood: {type: Boolean}, 
-  orderDatesArray:[{date:String,isDone:Boolean}],
+  orderDatesArray:[{date:String,periodDay:Number,isDone:Boolean}],
   Comment: {type: String},
   entryDate: {type:Date},
   date: {type:Date},
