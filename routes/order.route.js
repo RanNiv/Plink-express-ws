@@ -23,13 +23,14 @@ router.put('/:id/update', orderdb.UpdateOrderStatus);
 
 router.delete('/:id/delete', orderdb.order_record_delete);
 
-router.get('/all/patients', orderdb.selectAll);
 
 
 router.get('/find/:id', orderdb.findPatientOrders);
 
+router.get('/all/patients', orderdb.selectAll);
 
-
+//router.get('/all/patients', orderdb.selectAllAsyncExample1);
+//router.get('/all/patientstest2', orderdb.selectAllAsyncExample2);
 
 
 module.exports = router;

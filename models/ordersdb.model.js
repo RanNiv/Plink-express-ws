@@ -52,14 +52,17 @@ let OrderSchema =new Schema ({
   firstName:String,
   lastName:String,
   nurseOrderText: {type: String},
-  isDone: {type: Boolean, required: true},
-  isUnderStood: {type: Boolean},
+  firstOrderDate:{type: String},
+  orderDays:{type: Number},
+  isUnderstood: {type: Boolean}, 
+  orderDatesArray:[{date:String,isDone:Boolean}],
   Comment: {type: String},
   entryDate: {type:Date},
-  date: {type:String},
-  dayOfPeriod:{type:String},
+  date: {type:Date},
+  dayOfPeriod:{type:Number },
   doctor:{type:String},
-  entryUser:{type:String}
+  entryUser:{type:String},
+  isComplete:{type: Boolean}
   });
 
 

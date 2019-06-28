@@ -18,14 +18,17 @@ exports.order_record_create = function (req, res) {
               lastName: req.body.lastName,
               entryDate: req.body.entryDate,
               date: req.body.date,
-              dayOfPeriod:req.body.dayOfPeriod,
-              doctor:req.body.doctor,
-              entryUser:req.body.entryUser,
+              firstOrderDate: req.body.firstOrderDate,
+              orderDays: req.body.orderDays,
+              orderDatesArray: req.body.orderDatesArray,
+              dayOfPeriod: req.body.dayOfPeriod,
+              doctor: req.body.doctor,
+              entryUser: req.body.entryUser,
               nurseOrderText: req.body.nurseOrderText,
               patientDetails: req.body.patientDetails,
-              isDone:         req.body.isDone,
               isUnderStood: req.body.isUnderStood,
-              Comment: req.body.Comment
+              Comment: req.body.Comment,
+              isComplete: req.body.isComplete
               }); 
     //order.collection.deleteMany(); empty collection
     order.save(function (err) {
@@ -100,7 +103,7 @@ exports.UpdateOrderStatus = function (req, res) {
 
 
     exports.findPatientOrders = function (req, res,next) {
-        medicalDB.Order.find({idNum:req.params.id}).where('isDone').equals(false).
+        medicalDB.Order.find({idNum:req.params.id}).where('isComplete').equals(false).
         
         then((orders)=>
         res.send(orders));
@@ -119,6 +122,18 @@ exports.UpdateOrderStatus = function (req, res) {
       res.send(orders);  
     });
 }
+
+
+
+
+
+
+
+
+    
+
+
+
 
 exports.findspecificName = function(req, res) {
 /*     medicalDB.Order.findOne({nurseOrderText:"test nurseOrderText"},function (err,order){
@@ -162,6 +177,8 @@ exports.findspecificName = function(req, res) {
 
 
 
+
+
 exports.order_record_delete = function (req, res) {
     medicalDB.Order.findByIdAndRemove(req.params.id, function (err) {
        /*  if (err) return next(err);
@@ -175,3 +192,10 @@ exports.order_record_delete = function (req, res) {
 
     })
 };
+
+
+
+
+
+
+
