@@ -26,7 +26,7 @@ exports.order_record_create = function (req, res) {
               entryUser: req.body.entryUser,
               nurseOrderText: req.body.nurseOrderText,
               patientDetails: req.body.patientDetails,
-              isUnderStood: req.body.isUnderStood,
+              isUnderstood: req.body.isUnderstood,
               Comment: req.body.Comment,
               isComplete: req.body.isComplete
               }); 
