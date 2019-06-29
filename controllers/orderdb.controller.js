@@ -78,11 +78,14 @@ exports.order_details = function (req, res,next) {
 
 
 exports.UpdateOrderStatus = function (req, res) {
-    medicalDB.Order.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, order) {
-        if (err) return next(err);
+    medicalDB.Order.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true},function(err, result){
+        if(err){
+            console.log(err);
+        }
+   
+       res.send(result);
 
-        //the server supose to sends a JSON object
-       // res.send('order Record udpated.');
+    
     });
 };
 
